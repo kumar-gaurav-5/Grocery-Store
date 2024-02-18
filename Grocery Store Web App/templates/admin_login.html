@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+    
+</head>
+<body>
+    <h2>Manager Login</h2>
+    <div class="wrap">
+        <form method="post">
+            <label for="username">Username:</label> <br>
+            <input type="text" id="username" name="username" required />
+            <br><br>
+            <label for="password">Password:</label> <br>
+            <input type="password" id="password" name="password" required />
+            <br><br>
+            <input type="submit" value="Login" />
+          </form>
+          {% if error %}
+            <p>{{ error }}</p>
+          {% endif %}
+    </div>
+    <!-- <script>
+        function authorize() {
+          var user = document.getElementById('user').value;
+          var passw = document.getElementById('passw').value;
+          if (user=="admin" && passw=="admin@123") {
+            window.location.href = 'admin_dashboard.html';
+          } 
+          else {
+            alert('Username or password is incorrect');
+          }
+        }
+      </script>
+    -->
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/manager_dashboard">Manager_01's Dashboard</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Summary</a></li> 
+            <li><a href="/admin_page">Logout</a></li>
+          </ul>
+        </div>
+    </nav>
+    <h1>Edit Product</h1>
+    <form action="{{ url_for('edit_product', product_id=product.product_id) }}" method="post">
+        <label for="name">Product Name:</label><br>
+        <input type="text" id="name" name="product_name" value="{{ product.product_name }}"><br><br>
+        <label for="unit">Unit:</label><br>
+        <input type="text" id="unit" name="unit" value="{{product.unit}}"><br><br>
+        <label for="rate_per_unit">Rate per Unit:</label><br>
+        <input type="number" id="rate_per_unit" name="rate_per_unit" value="{{product.rate_per_unit}}"><br><br>
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity" value="{{product.quantity}}"><br><br>
+        <label for="name">Manufacture Date:</label><br>
+        <input type="date" id="manufacture_date" name="manufacture_date" value="{{product.manufacture_date}}"><br><br>
+        <label for="name">Expiry Date:</label><br>
+        <input type="date" id="expiry_date" name="expiry_date" value="{{product.expiry_date}}"><br><br>
+        <input type="submit" value="Save">
+    
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/user_dashboard">{{ current_user.username }}'s Dashboard</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('cart')}}">Cart</a></li> 
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+    </nav>
+    
+    <form action="{{ url_for('search') }}" method="get">
+      <input type="text" name="search_query" id="search_query" placeholder="Search Category/Products">
+      <input type="submit" value="Search">
+    </form>
+  
+    <ul>
+      {% for category in categories %}
+        <li>
+          {{ category.category_name }}
+          
+          <br>  
+          
+          <ul>
+            {% for product in category.products %}
+              <li>
+                {{ product.product_name }}
+                {% if product.quantity >0 %}
+                   <a href="{{ url_for('BuyNow', product_id=product.product_id) }}">Buy</a>
+                   <a href="{{ url_for('AddtoCart', product_id=product.product_id) }}">Add to Cart</a>
+                {% else %}
+                   <p style="color: red;">Out of Stock</p>
+                {% endif %}
+
+                
+              </li>
+            {% endfor %}
+             
+          </ul>
+          
+        </li>
+      {% endfor %}
+    </ul>
+    </body>
+</html>

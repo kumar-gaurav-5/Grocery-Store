@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <h1>Cart of {{current_user.username}}</h1>
+    </head>
+    
+    <body>
+      <a href="{{url_for('ClearCart')}}"><button>Clear Cart</button>  </a>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Unit</th>
+          <th>Rate per Unit</th>
+          <th>Quantity</th>
+          <th>Manufacture Date</th>
+          <th>Expiry Date</th>
+        </tr>
+        {% set ns = namespace(total=0) %}
+        {% for assc in association %}
+
+         {% for prod in product%}
+           {% if prod.product_id == assc.product_id %}
+            <tr>
+             <td>{{prod.product_name}}</td>
+             <td>{{prod.unit}}</td>
+             <td>{{prod.rate_per_unit}}</td>
+             <td>{{assc.product_quantity}}</td>
+             <td>{{prod.manufacture_date}}</td>
+             <td>{{prod.expiry_date}}</td>
+            </tr>
+            {% set ns.total = ns.total + (prod.rate_per_unit*assc.product_quantity) %}           
+           {% endif %}
+         {% endfor %}
+    
+        {% endfor %}
+        
+      </table>
+      <p>Total amount to be paid={{ns.total}}</p>  
+      <a href="{{url_for('BuyAll')}}"><button>Buy All</button>  </a>
+    </body>
+</html>

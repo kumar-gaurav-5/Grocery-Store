@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Purchase</h1>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+              <th>Name</th>
+              <th>Unit</th>
+              <th>Rate per Unit</th>
+              <th>Quantity</th>
+              <th>Manufacture Date</th>
+              <th>Expiry Date</th>
+            </tr>
+             <form method="post">
+              <tr>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.unit }}</td>
+                <td>{{ product.rate_per_unit }}</td>
+                <td> 
+                    <input type="number" id="quantity" name="quantity" value={{quantity}} min="1" required> 
+                </td>
+                <td>{{ product.manufacture_date}}</td>
+                <td>{{ product.expiry_date}}</td>
+                <input type="submit" value="confirm" />  
+              </tr>
+             </form>
+            
+          </table>
+          <p>Total amount to be paid={{total_p}}</p>
+          <a href="{{url_for('OrderPlaced', product_id=product.product_id, quantity=quantity)}}"><button>Place Order</button>  </a>
+          {% if error %}
+            <p>{{ error }}</p>
+          {% endif %}
+    </body>
+</html>
